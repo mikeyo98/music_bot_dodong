@@ -1,0 +1,27 @@
+{
+  "name": "dodong",
+  "homepage": "https://github.com/nizeic/Dodong#readme",
+  "bugs": "https://github.com/nizeic/Dodong/issues",
+  "license": "MIT",
+  "description": "A music bot written using discord.js and discord-player",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [
+    "discord",
+    "music",
+    "bot",
+    "discordjs"
+  ],
+  "author": "nizeic",
+  "scripts": {
+    "start": "node index.js",
+    "test": "npm start"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nizeic/Dodong.git"
+  }
+}
