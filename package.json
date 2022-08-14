@@ -1,9 +1,9 @@
 {
-  "name": "dodong",
-  "homepage": "https://github.com/nizeic/Dodong#readme",
-  "bugs": "https://github.com/nizeic/Dodong/issues",
+  "name": "music_bot_dodong",
+  "homepage": "https://github.com/mikeyo98/music_bot_dodong",
+  "bugs": "https://github.com/mikeyo98/music_bot_dodong/issues",
   "license": "MIT",
-  "description": "A music bot written using discord.js and discord-player",
+  "description": "Dodong (by nizeic) with fixed playlist search and additional command that allows users to select a text channel for music messages",
   "version": "1.0.0",
   "main": "index.js",
   "keywords": [
@@ -12,7 +12,16 @@
     "bot",
     "discordjs"
   ],
-  "author": "nizeic",
+  "author": "mik",
+  "dependencies": {
+    "@discord-player/extractor": "^3.0.2",
+    "@discordjs/opus": "^0.8.0",
+    "@discordjs/rest": "^1.0.1",
+    "discord-player": "^5.3.1",
+    "discord.js": "^14.2.0",
+    "ffmpeg-static": "^5.0.2",
+    "play-dl": "^1.9.5"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "npm start"
