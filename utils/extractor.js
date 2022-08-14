@@ -127,22 +127,40 @@ module.exports = {
                 // if (query.startsWith("https")) {
                 //     query = query.split("&")[0];
                 // }
+                
                 if (query.startsWith("https") && playdl.yt_validate(query) === "video") {
-                    const info = await Youtube.search(query, {limit: 1, type: "video", safeSearch: true});
-                    if(!info || !info.length) 
-                        return resolve({ playlist: null, info: null });
+                    const info = await Youtube.getVideo(query, {limit: 1, type: "video", safeSearch: true});
                     
+                    // if(!info || !info.length) 
+                    //     return resolve({ playlist: null, info: null });
+                    
+                    // const track = {
+                    //     title: info[0].title,
+                    //     duration: info[0].duration,
+                    //     thumbnail: info[0].thumbnail ? info[0].thumbnail.url : null,
+                    //     async engine() {
+                    //         return (await playdl.stream(`https://youtu.be/${info[0].id}`, { discordPlayerCompatibility : true })).stream;
+                    //     },
+                    //     views: info[0].views,
+                    //     author: info[0].channel.name,
+                    //     description: "",
+                    //     url: `https://youtu.be/${info[0].id}`,
+                    //     source: "youtube-custom"
+                    // };
+                    if(!info) 
+                        return resolve({ playlist: null, info: null });    
+
                     const track = {
-                        title: info[0].title,
-                        duration: info[0].duration,
-                        thumbnail: info[0].thumbnail ? info[0].thumbnail.url : null,
+                        title: info.title,
+                        duration: info.duration,
+                        thumbnail: info.thumbnail ? info.thumbnail.url : null,
                         async engine() {
-                            return (await playdl.stream(`https://youtu.be/${info[0].id}`, { discordPlayerCompatibility : true })).stream;
+                            return (await playdl.stream(`https://youtu.be/${info.id}`, { discordPlayerCompatibility : true })).stream;
                         },
-                        views: info[0].views,
-                        author: info[0].channel.name,
+                        views: info.views,
+                        author: info.channel.name,
                         description: "",
-                        url: `https://youtu.be/${info[0].id}`,
+                        url: `https://youtu.be/${info.id}`,
                         source: "youtube-custom"
                     };
                     return resolve({ playlist: null, info: [track] });
@@ -154,8 +172,11 @@ module.exports = {
                             title: track.title,
                             duration: track.durationInSec * 1000,
                             thumbnail: track.thumbnails ? track.thumbnails[0] ? track.thumbnails[0].url : null : null,
+                            // async engine() {
+                            //     return (await playdl.stream(await Youtube.search(track.url, {limit: 1, type: "video", safeSearch: true}).then(x => x[0] ? `https://youtu.be/${x[0].id}` : `https://youtu.be/Wch3gJG2GJ4`), { discordPlayerCompatibility : true })).stream;
+                            // },
                             async engine() {
-                                return (await playdl.stream(await Youtube.search(track.url, {limit: 1, type: "video", safeSearch: true}).then(x => x[0] ? `https://youtu.be/${x[0].id}` : `https://youtu.be/Wch3gJG2GJ4`), { discordPlayerCompatibility : true })).stream;
+                                return (await playdl.stream(`https://youtu.be/${track.id}`, { discordPlayerCompatibility : true })).stream;
                             },
                             views: track.views,
                             author: track.channel.name,
