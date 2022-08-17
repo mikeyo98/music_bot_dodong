@@ -49,19 +49,21 @@ module.exports = new Command({
         }
         
         if(searchResult.playlist) {
-            reply = { embeds: [{
-                description: `Queued **${searchResult.tracks.length}** tracks from [${searchResult.tracks[0].playlist.title}](${searchResult.tracks[0].playlist.url})`,
-                color: 0x44b868
-            }], failIfNotExists: false };
+        //     reply = { embeds: [{
+        //         description: `Queued **${searchResult.tracks.length}** tracks from [${searchResult.tracks[0].playlist.title}](${searchResult.tracks[0].playlist.url})`,
+        //         color: 0x44b868
+        //     }], failIfNotExists: false };
             queue.addTracks(searchResult.tracks);
         } else {
-            reply = { embeds: [{
-                description: `Queued **[${searchResult.tracks[0].title}](${searchResult.tracks[0].url})**`,
-                color: 0x44b868
-            }], failIfNotExists: false };
+        //     reply = { embeds: [{
+        //         description: `Queued **[${searchResult.tracks[0].title}](${searchResult.tracks[0].url})**`,
+        //         color: 0x44b868
+        //     }], failIfNotExists: false };
             queue.addTrack(searchResult.tracks[0]);
         }
-        slash ? message.editReply(reply) : message.reply(reply);
+        // slash ? message.editReply(reply) : message.reply(reply);
+
+        message.react("▶️");
 
         if(justConnected) queue.play();
 	}
