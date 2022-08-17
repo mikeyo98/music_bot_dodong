@@ -86,7 +86,7 @@ module.exports = new Event("interactionCreate", async (client, interaction) => {
                 embed.setDescription(`Skipped **[${queue.current.title}](${queue.current.url})**`);
                 embed.setColor('#44b868');
                 embed.setFooter({ text: interaction.user.tag, iconURL: interaction.user.displayAvatarURL() });
-                interaction.channel.send({ embeds: [embed] });
+                //interaction.channel.send({ embeds: [embed] });
                 await interaction.deferUpdate();
                 queue.skip();
                 break;

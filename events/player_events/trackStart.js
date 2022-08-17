@@ -6,9 +6,9 @@ module.exports = new Event("trackStart", async (player, queue, track) => {
         console.log(`(${queue.guild.name}) destroying queue due to missing text channel permissions`);
         return queue.destroy();
     }
-    if(queue.npmessage && queue.npmessage.editable) {
-        queue.npmessage.delete().catch(error=> {});
-    }
+    // if(queue.npmessage && queue.npmessage.editable) {
+    //     queue.npmessage.delete().catch(error=> {});        
+    // }
     let row = new ActionRowBuilder()
         .addComponents(
             new ButtonBuilder()
