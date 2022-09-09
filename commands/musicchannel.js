@@ -24,9 +24,11 @@ module.exports = new Command({
             embed.setDescription(`No channel selected, ${client.user.username} now only reply directly to commands.`);
             return message.reply({ embeds: [embed], ephemeral: true });
         } 
-        // if channel exists, update musicchannel
-        const channels = client.channels.cache;
-        const result = channels.filter(channel => (channel.name === args[0] && channel instanceof TextChannel))
+
+        const guild = message.guild;
+        const guildChannels = guild.channels.cache;
+        const result = guildChannels.filter(channel => (channel.name === args[0] && channel instanceof TextChannel));
+        
 
         if(result.size === 0) {            
             console.log("No text channel found")
@@ -34,7 +36,7 @@ module.exports = new Command({
             embed.setDescription(`No text channel found.`);
             return message.reply({ embeds: [embed], ephemeral: true });
         } else {
-            client.musicchannel = result.first()
+            client.musicChannelMap.set(guild.id, result.first());
             const embed = new EmbedBuilder();
             embed.setDescription(`Text channel found: ${args[0]}. ${client.user.username} now will play in channel "${args[0]}".`);
             return message.reply({ embeds: [embed], ephemeral: true });
