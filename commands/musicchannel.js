@@ -36,7 +36,7 @@ module.exports = new Command({
             embed.setDescription(`No text channel found.`);
             return message.reply({ embeds: [embed], ephemeral: true });
         } else {
-            client.musicChannelMap.set(guild.id, result.first());
+            guild.musicChannel = result.first();
             const embed = new EmbedBuilder();
             embed.setDescription(`Text channel found: ${args[0]}. ${client.user.username} now will play in channel "${args[0]}".`);
             return message.reply({ embeds: [embed], ephemeral: true });

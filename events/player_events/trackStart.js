@@ -31,7 +31,7 @@ module.exports = new Event("trackStart", async (player, queue, track) => {
     const title = ['spotify-custom', 'soundcloud-custom'].includes(track.source) ?
         `${track.author} - ${track.title}` : `${track.title}`;
     
-    const channel = player.client.musicChannelMap.has(queue.guild.id) ? player.client.musicChannelMap.get(queue.guild.id) : queue.metadata.channel;
+    const channel = queue.guild.musicChannel ? queue.guild.musicChannel : queue.metadata.channel;
     channel.send({
     //queue.metadata.channel.send({
         embeds: [

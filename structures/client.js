@@ -43,7 +43,6 @@ class Bot extends Client {
 		if(this.hasWebplayer) {
 			this.io = require("socket.io")(process.env.PORT || 3000, { cors: { origin: "*", methods: ["GET", "POST"] }});
 		}
-		this.musicChannelMap = new Map(); // (key: guild, value:channel)
 	}
 
 	async init(token) {
